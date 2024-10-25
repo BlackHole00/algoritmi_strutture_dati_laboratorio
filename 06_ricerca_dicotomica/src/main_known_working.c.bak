@@ -1,0 +1,53 @@
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#define countof(_arr) (sizeof(_arr)/sizeof(*_arr))
+
+int binary_search_helper(int array[], int bottom, int top, int key) {
+	if (bottom > top) {
+		return -1;
+	}
+
+	int mid = (bottom + top) / 2;
+	if (array[mid] < key) {
+		return binary_search_helper(array, mid + 1, top, key);
+	}
+	if (array[mid] > key) {
+		return binary_search_helper(array, bottom, mid - 1, key);
+	}
+
+	return mid;
+}
+
+int binary_search(int array[], int length, int key) {
+	return binary_search_helper(array, 0, length - 1, key);
+}
+
+int main() {
+	int array[256];
+	int array_length = 0;
+
+	printf("%d%d", '\n', '\f');
+
+	char* string = NULL;
+	size_t line_cap = 0;
+	ssize_t line_length = getline(&string, &line_cap, stdin);
+
+	int key;
+	scanf("%d", &key);
+
+	while (isdigit(string[0]) || string[0] == '-' || string[0] == ' ') {
+		int characters_read;
+
+		sscanf(string, "%d%n", &array[array_length], &characters_read);
+		array_length++;
+
+		string += characters_read;
+	}
+	
+	int result = binary_search(array, array_length, key);
+	printf("%d\n", result);
+
+	return 0;
+}

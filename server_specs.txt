@@ -1,0 +1,3 @@
+uname: Linux jailserver 5.4.0-198-generic #218-Ubuntu SMP Fri Sep 27 20:18:53 UTC 2024 
+x86_64 x86_64 x86_64 GNU/Linux
+glibc version: 2.31
