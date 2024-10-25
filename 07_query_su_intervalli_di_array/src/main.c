@@ -24,6 +24,7 @@ void interval_sum(int array[], int array_length, Range ranges[], int ranges_leng
 			sums[i] += array[j];
 		}
 	}
+
 #elif defined(SOLUTION_O_N_PLUS_M)
 	int* partial_sums = malloc((array_length + 1) * sizeof(int));
 
@@ -85,13 +86,20 @@ void parse_inputs(
 
 int main() {
 	int array[4096];
-	int array_length = 0;
+	int array_length;
 
 	int sums[1024];
 	Range ranges[1024];
-	int ranges_length = 0;
+	int ranges_length;
 
-	parse_inputs(array, countof(array), &array_length, ranges, countof(array), &ranges_length);
+	parse_inputs(
+		array,
+		countof(array),
+		&array_length,
+		ranges,
+		countof(array),
+		&ranges_length
+	);
 	interval_sum(array, array_length, ranges, ranges_length, sums);
 
 	for (int i = 0; i < ranges_length; i++) {
